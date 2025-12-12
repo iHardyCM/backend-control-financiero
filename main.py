@@ -9,7 +9,7 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 
-# --- Dependencia de BD ---
+
 def get_db():
     db = SessionLocal()
     try:
@@ -18,7 +18,7 @@ def get_db():
         db.close()
 
 
-# --- LOGIN ---
+
 @app.post("/login")
 def login(data: schemas.LoginRequest, db: Session = Depends(get_db)):
     usuario = db.query(models.Usuario).filter(models.Usuario.pin == data.pin).first()
@@ -27,7 +27,7 @@ def login(data: schemas.LoginRequest, db: Session = Depends(get_db)):
     return {"success": False}
 
 
-# --- REGISTRAR MOVIMIENTO ---
+
 @app.post("/movimiento")
 def crear_movimiento(data: schemas.MovimientoRequest, db: Session = Depends(get_db)):
     mov = models.Movimiento(
@@ -41,7 +41,7 @@ def crear_movimiento(data: schemas.MovimientoRequest, db: Session = Depends(get_
     return {"message": "Movimiento registrado"}
 
 
-# --- RESUMEN ---
+
 @app.get("/resumen")
 def resumen(db: Session = Depends(get_db)):
     
@@ -77,7 +77,7 @@ def obtener_movimientos(db: Session = Depends(get_db)):
     return {"movimientos": respuesta}
 
 
-# --- PRESUPUESTO ---
+
 @app.get("/presupuesto")
 def presupuesto():
     return {
