@@ -1,3 +1,4 @@
+from datetime import date
 from pydantic import BaseModel
 from typing import Optional
 from typing import List
@@ -18,7 +19,7 @@ class MovimientoRequest(BaseModel):
     id_usuario: int
     id_cuenta: int
     id_categoria: int
-    id_fecha: int
+    fecha: date
     monto: float
     descripcion: Optional[str] = None
 

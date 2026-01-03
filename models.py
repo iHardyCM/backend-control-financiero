@@ -66,6 +66,7 @@ class Movimiento(Base):
     descripcion = Column(String)
     fecha_registro = Column(DateTime, default=datetime.utcnow)
 
+
 class Presupuesto(Base):
     __tablename__ = "presupuesto"
 
