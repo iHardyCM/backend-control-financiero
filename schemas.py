@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 from pydantic import BaseModel
 from typing import Optional
 from typing import List
@@ -55,4 +55,18 @@ class ResumenCompletoResponse(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class UsuarioAdminResponse(BaseModel):
+    id: int
+    username: str
+    email: Optional[str]
+    estado: str
+    fecha_creacion: datetime
+
+    class Config:
+        orm_mode = True
+
+class UsuarioUpdateRequest(BaseModel):
+    email: str
 
